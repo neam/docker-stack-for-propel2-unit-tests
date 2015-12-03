@@ -1,0 +1,23 @@
+# Shell to run unit tests within
+shell:
+  build: .
+  links:
+    - mysql
+    - pgsql
+  volumes:
+    - .:/repo:rw
+    - ../Propel2:/propel2:rw
+  working_dir: '/propel2'
+  command: "true"
+
+# Local MySQL database server
+mysql:
+  image: mysql:5.6.27
+  volumes:
+    - ./stack/mysql/.db/mysql:/var/lib/mysql:rw
+    - ./stack/mysql/:/stack/mysql:rw
+  ports:
+    - "3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: "local-mysql-pass"
+  command: "/stack/mysql/run.sh"
