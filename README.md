@@ -9,16 +9,18 @@ This repository makes it straight-forward to run Propel2 Unit Tests locally and 
 Check out the source code to both this repo and Propel2, in side-by-side directories:
 
 ```
-git clone -b develop https://github.com/neam/docker-stack-for-propel2-unit-tests.git
+git clone https://github.com/neam/docker-stack-for-propel2-unit-tests.git
+git clone https://github.com/propelorm/Propel2.git
 ```
 
 Install [Docker Toolbox](https://www.docker.com/docker-toolbox).
 
 ## Running Unit Tests
 
-To get a cross-platform Propel2 unit test environment with the required dependencies installed, start the docker unit test shell from within the repository's root folder:
+To get a cross-platform Propel2 unit test environment with the required dependencies installed, start the docker unit test shell from within this repository's root folder:
 
 ```
+cd docker-stack-for-propel2-unit-tests
 eval "$(docker-machine env default)"
 docker-compose run shell /bin/bash
 ```
