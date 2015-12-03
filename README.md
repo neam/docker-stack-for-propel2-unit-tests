@@ -15,8 +15,6 @@ git clone https://github.com/propelorm/Propel2.git
 
 Install [Docker Toolbox](https://www.docker.com/docker-toolbox).
 
-## Running Unit Tests
-
 To get a cross-platform Propel2 unit test environment with the required dependencies installed, start the docker unit test shell from within this repository's root folder:
 
 ```
@@ -25,23 +23,39 @@ eval "$(docker-machine env default)"
 docker-compose run shell /bin/bash
 ```
 
-Then run:
+## Running Unit Tests (Should be run inside the docker shell)
 
+Agnostic tests:
+```
+tests/bin/phpunit.agnostic.sh
+```
+
+MySQL tests:
 ```
 export DB_HOSTNAME=mysql
 export DB_USER=root
 export DB_PW=local-mysql-pass 
-./tests/bin/setup.mysql.sh
-./tests/bin/setup.sqlite.sh
-phpunit
+tests/bin/setup.mysql.sh
+tests/bin/phpunit.mysql.sh
+```
+
+SQLite tests:
+```
+tests/bin/setup.sqlite.sh
+tests/bin/phpunit.sqlite.sh
 ```
 
 ## TODO
 
 Support for PostgreSQL is not complete. Pull requests welcome. 
 
+PostgreSQL tests:
 ```
-DB_HOSTNAME=pgsql DB_USER=root DB_PW=local-pgsql-pass ./tests/bin/setup.pgsql.sh
+export DB_HOSTNAME=pgsql
+export DB_USER=root
+export DB_PW=local-pgsql-pass 
+tests/bin/setup.pgsql.sh
+tests/bin/phpunit.pgsql.sh
 ```
 
 ## License ##
