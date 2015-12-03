@@ -21,3 +21,15 @@ mysql:
   environment:
     MYSQL_ROOT_PASSWORD: "local-mysql-pass"
   command: "/stack/mysql/run.sh"
+
+# Local PostgreSQL database server
+pgsql:
+  image: postgres:9.4.5
+  volumes:
+    - ./stack/pgsql/.db/pgsql:/var/lib/postgresql/data:rw
+    - ./stack/pgsql/:/stack/pgsql:rw
+  ports:
+    - "3306"
+  environment:
+    POSTGRES_PASSWORD: "local-pgsql-pass"
+  command: "/stack/pgsql/run.sh"
