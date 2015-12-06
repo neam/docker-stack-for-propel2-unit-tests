@@ -6,6 +6,7 @@ shell:
     - pgsql
   volumes:
     - .:/repo:rw
+    - .tmp:/tmp:rw
     - ../Propel2:/propel2:rw
   working_dir: '/propel2'
   command: "true"
