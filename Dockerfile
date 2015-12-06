@@ -7,9 +7,10 @@ FROM neam/debian-php:fpm-5.6.14-hhvm-3.10.1
 RUN apt-get update && \
     apt-get upgrade -y -q # 2015-12-03 12:55
 
-# Enable editors and general tools for administration processes
+# Enable locales, editors and general tools for administration processes
 ENV TERM xterm
 RUN apt-get install -y -q \
+        locales \
         curl \
         wget \
         less \
@@ -24,7 +25,7 @@ RUN apt-get install -y -q \
         php5-pgsql
 
 # ====
-# Install/setup enough to be able to run the unit tests
+# Install/setup enough to be able to successfully run the unit tests
 # ====
 
 # Setup config variables
@@ -40,6 +41,14 @@ RUN apt-get install -y -q \
 # Composer (so that we use a clean composer install)
 RUN curl -sS https://getcomposer.org/installer | php && \
         mv /composer.phar /usr/local/bin/composer
+
+# An UTF-8 locale must be installed and enabled for some tests to pass
+ENV DEBIAN_FRONTEND noninteractive
+RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen
+RUN dpkg-reconfigure locales
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 
 # Clean apt caches
