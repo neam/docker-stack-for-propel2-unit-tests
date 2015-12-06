@@ -37,10 +37,6 @@ RUN echo 'date.timezone = Europe/Berlin' >> /etc/hhvm/php.ini
 RUN apt-get install -y -q \
         mysql-client
 
-# PHP Unit
-RUN wget https://phar.phpunit.de/phpunit.phar && \
-        chmod +x phpunit.phar && \
-        mv phpunit.phar /usr/local/bin/phpunit
 
 # Clean apt caches
 RUN apt-get clean && \
