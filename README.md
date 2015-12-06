@@ -21,6 +21,7 @@ To get a cross-platform Propel2 unit test environment with the required dependen
 cd docker-stack-for-propel2-unit-tests
 eval "$(docker-machine env default)"
 docker-compose run shell /bin/bash
+composer install --prefer-source
 ```
 
 ## Running Unit Tests (Should be run inside the docker shell)

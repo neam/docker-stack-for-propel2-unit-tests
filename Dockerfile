@@ -37,6 +37,10 @@ RUN echo 'date.timezone = Europe/Berlin' >> /etc/hhvm/php.ini
 RUN apt-get install -y -q \
         mysql-client
 
+# Composer (so that we use a clean composer install)
+RUN curl -sS https://getcomposer.org/installer | php && \
+        mv /composer.phar /usr/local/bin/composer
+
 
 # Clean apt caches
 RUN apt-get clean && \
