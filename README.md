@@ -33,9 +33,9 @@ tests/bin/phpunit.agnostic.sh
 
 MySQL tests:
 ```
-export DB_HOSTNAME=mysql
-export DB_USER=root
-export DB_PW=local-mysql-pass 
+export DB_HOSTNAME=$MYSQL_DB_HOSTNAME
+export DB_USER=$MYSQL_DB_USER
+export DB_PW=$MYSQL_DB_PW 
 tests/bin/setup.mysql.sh
 tests/bin/phpunit.mysql.sh
 ```
@@ -57,6 +57,34 @@ export DB_USER=root
 export DB_PW=local-pgsql-pass 
 tests/bin/setup.pgsql.sh
 tests/bin/phpunit.pgsql.sh
+```
+
+## Troubleshooting
+
+In case all database tests mysteriously start failing all at once, try forcing a regeneration of the fixtures:
+
+```
+rm /propel2/tests/Fixtures/fixtures_built
+```
+
+Then re-run the tests.
+
+To interact with MySQL, either use the following command from inside the docker shell:
+
+```
+mysql -h$MYSQL_DB_HOSTNAME -u$MYSQL_DB_USER -p$MYSQL_DB_PW
+```
+
+Or, connect from the outside using the following details:
+
+IP:
+```
+docker-machine ip default
+```
+
+Port:
+```
+docker-compose ps mysql | awk '{ print $6 }' | sed 's/0.0.0.0://' | sed 's/->.*//'
 ```
 
 ## License ##

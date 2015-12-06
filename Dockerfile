@@ -50,6 +50,10 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
+# Set env vars for database access
+ENV MYSQL_DB_HOSTNAME mysql
+ENV MYSQL_DB_USER root
+ENV MYSQL_DB_PW local-mysql-pass
 
 # Clean apt caches
 RUN apt-get clean && \
