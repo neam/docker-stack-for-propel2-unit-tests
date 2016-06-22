@@ -9,7 +9,7 @@ shell:
     - .tmp:/tmp:rw
     - ../Propel2:/propel2:rw
   working_dir: '/propel2'
-  command: "true"
+  command: "/bin/su -s /bin/bash propel"
 
 # Local MySQL database server
 mysql:

@@ -58,3 +58,6 @@ ENV MYSQL_DB_PW local-mysql-pass
 # Clean apt caches
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Add user to run tests as (needs to be an unprivileged user)
+RUN useradd -m -p "abc" propel
