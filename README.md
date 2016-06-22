@@ -68,15 +68,21 @@ tests/bin/phpunit.pgsql.sh
 
 ## Troubleshooting
 
-In case all database tests mysteriously start failing all at once, try forcing a regeneration of the fixtures:
+To reset the database to a clean state, you need to remove the file that prevents a regeneration of the fixtures:
 
 ```
 rm /propel2/tests/Fixtures/fixtures_built
 ```
 
-Then re-run the tests.
+Then re-run the setup and tests as per above.
 
-To interact with MySQL, either use the following command from inside the docker shell:
+To interact with MySQL, check the access credential from inside the docker shell:
+
+```
+echo "Username: $MYSQL_DB_USER Password: $MYSQL_DB_PW"
+```
+
+Either use the following command from inside the docker shell:
 
 ```
 mysql -h$MYSQL_DB_HOSTNAME -u$MYSQL_DB_USER -p$MYSQL_DB_PW
