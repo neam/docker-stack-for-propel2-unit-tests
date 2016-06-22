@@ -22,6 +22,7 @@ To get a cross-platform Propel2 unit test environment with the required dependen
 ```
 cd docker-stack-for-propel2-unit-tests
 eval "$(docker-machine env default)"
+docker-compose build
 docker-compose run shell /bin/bash
 ```
 

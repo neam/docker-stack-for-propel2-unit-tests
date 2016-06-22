@@ -1,11 +1,11 @@
 # Dockerfile for running Propel2 Unit Tests
 # ===============================================================
 
-FROM neam/debian-php:fpm-5.6.14-hhvm-3.10.1
+FROM neam/debian-php:fpm-5.6.20-hhvm-3.13.1
 
 # Update the below commented date time to match the time docker fetched the system package information - an update will trigger docker to fetch the information anew
 RUN apt-get update && \
-    apt-get upgrade -y -q # 2015-12-03 12:55
+    apt-get upgrade -y -q # 2016-06-22 13:24
 
 # Enable locales, editors and general tools for administration processes
 ENV TERM xterm
