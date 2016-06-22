@@ -6,7 +6,9 @@ This repository makes it straight-forward to run Propel2 Unit Tests locally and 
 
 ## Getting Started
 
-Check out the source code to both this repo and Propel2, in side-by-side directories:
+First, read [http://propelorm.org/documentation/cookbook/working-with-test-suite.html]().
+
+Then check out the source code to both this repo and Propel2, in side-by-side directories:
 
 ```
 git clone https://github.com/neam/docker-stack-for-propel2-unit-tests.git
@@ -21,6 +23,10 @@ To get a cross-platform Propel2 unit test environment with the required dependen
 cd docker-stack-for-propel2-unit-tests
 eval "$(docker-machine env default)"
 docker-compose run shell /bin/bash
+```
+
+Then, inside the docker shell:
+```
 composer install --prefer-source
 ```
 
@@ -84,7 +90,7 @@ docker-machine ip default
 
 Port:
 ```
-docker-compose ps mysql | awk '{ print $6 }' | sed 's/0.0.0.0://' | sed 's/->.*//'
+docker-compose port mysql 3306 | sed 's/[0-9.]*://'
 ```
 
 ## License ##
